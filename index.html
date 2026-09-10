@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>RA ESPOCH - Mini servidor</title>
+
+  <!-- Versiones alineadas con el ejemplo oficial de AR.js -->
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    html,body{margin:0;overflow:hidden;font-family:Arial,sans-serif;background:#000}
+    #panel{
+      position:fixed;left:8px;right:8px;top:8px;z-index:20;
+      background:rgba(255,255,255,.94);padding:10px;border-radius:9px;
+      font-size:13px;line-height:1.25
+    }
+    #estado{font-weight:bold}
+    .espera{color:#8a4d00}.ok{color:#087b32}
+  </style>
+</head>
+
+<body>
+<div id="panel">
+  <b>RA – Mini servidor | Tecnología y Diseño Multimedia</b><br>
+  1) Apunte al HIRO completo desde 35–60 cm.<br>
+  2) No tape el borde negro y evite reflejos.<br>
+  Estado: <span id="estado" class="espera">buscando marcador…</span>
+</div>
+
+<a-scene
+  embedded
+  vr-mode-ui="enabled:false"
+  renderer="antialias:true; alpha:true; precision:mediump;"
+  arjs="sourceType: webcam;
+        sourceWidth: 640;
+        sourceHeight: 480;
+        displayWidth: 640;
+        displayHeight: 480;
+        debugUIEnabled: false;
+        detectionMode: mono;"
+>
+
+  <a-marker
+    id="hiro"
+    preset="hiro"
+    emitevents="true"
+    smooth="true"
+    smoothCount="10"
+    smoothTolerance="0.01"
+    smoothThreshold="5">
+
+    <!-- Plataforma -->
+    <a-box position="0 0.04 0" width="1.45" height="0.08" depth="1.0"
+           color="#D8DDE3"></a-box>
+
+    <!-- Rack principal -->
+    <a-box position="0 0.72 0" width="0.82" height="1.35" depth="0.58"
+           color="#20252A"></a-box>
+
+    <!-- Frente de servidores -->
+    <a-box position="0 0.34 0.305" width="0.69" height="0.18" depth="0.035"
+           color="#4078C0"></a-box>
+    <a-box position="0 0.59 0.305" width="0.69" height="0.18" depth="0.035"
+           color="#4FA56B"></a-box>
+    <a-box position="0 0.84 0.305" width="0.69" height="0.18" depth="0.035"
+           color="#D69A35"></a-box>
+    <a-box position="0 1.09 0.305" width="0.69" height="0.18" depth="0.035"
+           color="#B94F57"></a-box>
+
+    <!-- LEDs -->
+    <a-sphere position="-0.27 0.34 0.34" radius="0.025" color="#35FF64"></a-sphere>
+    <a-sphere position="-0.27 0.59 0.34" radius="0.025" color="#35FF64"></a-sphere>
+    <a-sphere position="-0.27 0.84 0.34" radius="0.025" color="#35FF64"></a-sphere>
+    <a-sphere position="-0.27 1.09 0.34" radius="0.025" color="#35FF64"></a-sphere>
+
+    <!-- Ventiladores laterales -->
+    <a-cylinder position="-0.43 0.70 0" rotation="0 0 90"
+                radius="0.15" height="0.035" color="#5C636B"></a-cylinder>
+    <a-cylinder position="0.43 0.70 0" rotation="0 0 90"
+                radius="0.15" height="0.035" color="#5C636B"></a-cylinder>
+
+    <!-- Etiqueta flotante -->
+    <a-plane position="0 1.62 0" width="1.5" height="0.34" color="#FFFFFF"></a-plane>
+    <a-text value="MINI SERVIDOR TI"
+            position="-0.61 1.64 0.012"
+            width="2.4" color="#111111"></a-text>
+
+    <!-- Flechas / etiquetas básicas -->
+    <a-text value="CPU" position="-0.17 1.10 0.34" width="1.1" color="#FFFFFF"></a-text>
+    <a-text value="RAM" position="-0.17 0.85 0.34" width="1.1" color="#FFFFFF"></a-text>
+    <a-text value="SSD" position="-0.17 0.60 0.34" width="1.1" color="#FFFFFF"></a-text>
+    <a-text value="RED" position="-0.17 0.35 0.34" width="1.1" color="#FFFFFF"></a-text>
+
+    <!-- Animación pequeña para evidenciar objeto virtual -->
+    <a-ring position="0 0.09 0" rotation="-90 0 0"
+            radius-inner="0.62" radius-outer="0.66" color="#3D78C4"
+            animation="property: rotation; to: -90 360 0; dur:7000; loop:true; easing:linear"></a-ring>
+  </a-marker>
+
+  <a-entity camera></a-entity>
+</a-scene>
+
+<script>
+  window.addEventListener('load', () => {
+    const marker = document.querySelector('#hiro');
+    const estado = document.querySelector('#estado');
+
+    marker.addEventListener('markerFound', () => {
+      estado.textContent = 'HIRO DETECTADO ✓';
+      estado.className = 'ok';
+    });
+
+    marker.addEventListener('markerLost', () => {
+      estado.textContent = 'marcador perdido; muestre todo el HIRO';
+      estado.className = 'espera';
+    });
+  });
+</script>
+</body>
+</html>
