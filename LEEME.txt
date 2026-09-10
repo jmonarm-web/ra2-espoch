@@ -1,0 +1,36 @@
+RA HIRO - MINI SERVIDOR (VERSIÓN CORREGIDA)
+
+ARCHIVOS
+- index.html: aplicación principal con mini servidor.
+- diagnostico.html: prueba mínima con cubo para verificar el reconocimiento.
+- HIRO_OFICIAL_IMPRIMIR.png: marcador para imprimir.
+- HIRO_OFICIAL_A4_IMPRIMIR.pdf: versión A4 del marcador.
+
+PUBLICACIÓN EN VERCEL
+1. Cree una carpeta/proyecto y suba TODOS los archivos.
+2. El archivo principal debe conservar el nombre index.html.
+3. Publique el proyecto.
+4. Abra la dirección HTTPS que entrega Vercel desde Chrome en el celular.
+5. Autorice la cámara.
+
+PRIMERA PRUEBA RECOMENDADA
+1. Abra primero: https://SU-PROYECTO.vercel.app/diagnostico.html
+2. Muestre el marcador HIRO completo desde unos 35–60 cm.
+3. Debe aparecer un cubo azul.
+4. Si funciona, abra: https://SU-PROYECTO.vercel.app/
+5. Debe aparecer el mini servidor.
+
+IMPORTANTE
+- Use buena iluminación, sin reflejos.
+- No acerque demasiado el teléfono.
+- Debe verse todo el borde negro del HIRO.
+- Mantenga el marcador plano.
+- Pruebe inicialmente en orientación vertical.
+- La aplicación requiere conexión a Internet para cargar A-Frame y AR.js.
+
+USO DIDÁCTICO
+La práctica permite preguntar:
+- ¿Qué parte pertenece al entorno real y cuál al virtual?
+- ¿Qué función cumple el marcador en el tracking?
+- ¿Qué ocurre cuando se tapa el marcador?
+- ¿Cómo cambia la percepción cuando se mueve el teléfono?
